@@ -1,0 +1,131 @@
+<html ng-app="billingSystemApp">
+    <head>
+        <link rel="stylesheet" href="assets/styles/salesforce-lightning-design-system.min.css">  
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jsforce/1.7.0/jsforce.min.js"></script>
+        <script src="lib/socket.io.slim.js"></script>
+        <script src="scripts/app.js"></script>
+        <title>Billing System</title>
+    </head>
+    <body ng-controller="MainController as ctrl">
+        
+        <!-- HEADER -->
+            <div class="slds-page-header">
+                    <div class="slds-grid">
+                      <div class="slds-col slds-has-flexi-truncate">
+                        <div class="slds-media slds-no-space slds-grow">
+                          <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                              <svg class="slds-icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#opportunity" />
+                              </svg>
+                            </span>
+                          </div>
+                          <div class="slds-media__body">
+                            <nav>
+                              <ol class="slds-breadcrumb slds-line-height_reset">
+                                <li class="slds-breadcrumb__item">
+                                  <span>Opportunities</span>
+                                </li>
+                              </ol>
+                            </nav>
+                            <h1 class="slds-page-header__title slds-p-right_x-small">
+                              <button class="slds-button slds-button_reset slds-type-focus slds-truncate" aria-haspopup="true" title="">
+                                <span class="slds-grid slds-has-flexi-truncate slds-grid_vertical-align-center">
+                                  <span class="slds-truncate" title="Recently Viewed">Recently Received</span>
+                                  <span class="slds-icon_container slds-icon-utility-down" title="Description of icon when needed">
+                                    <svg class="slds-icon slds-icon--x-small slds-m-left_xx-small" aria-hidden="true">
+                                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down" />
+                                    </svg>
+                                    <span class="slds-assistive-text">Description of icon</span>
+                                  </span>
+                                </span>
+                              </button>
+                            </h1>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-grid">
+                      <div class="slds-col slds-align-middle">
+                        <p class="slds-text-body_small">{{ctrl.opportunities.length}} items</p>
+                      </div>
+                    </div>
+                  </div>        
+                  <!-- HEADER -->
+
+                  <!-- MAIN -->
+
+                  <table class="slds-table slds-table_bordered slds-table_cell-buffer" role="grid">
+                        <thead>
+                            <tr class="slds-text-title_caps">
+                                <th class="slds-text-align_right" scope="col" style="width: 3.25rem;">
+                                    <div class="slds-th__action slds-th__action_form">
+                                      <span class="slds-checkbox">
+                                        <input type="checkbox" name="options" id="checkbox-17" tabindex="-1" value="on" />
+                                        <label class="slds-checkbox__label" for="checkbox-17">
+                                          <span class="slds-checkbox_faux"></span>
+                                          <span class="slds-form-element__label slds-assistive-text">Select All</span>
+                                        </label>
+                                      </span>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate">Opportunity Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate">Account Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate">Salesperson Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate">Close Date</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate">Status</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate">Invoice Number</div>
+                                </th>
+                                <th>
+                                    Invoice
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="opp in ctrl.opportunities">
+                                <td class="slds-text-align_right">
+                                    <div class="slds-th__action slds-th__action_form">
+                                      <span class="slds-checkbox">
+                                        <input type="checkbox" id="checkbox-17" tabindex="-1" value="on" />
+                                        <label class="slds-checkbox__label" for="checkbox-17">
+                                          <span class="slds-checkbox_faux"></span>
+                                          <span class="slds-form-element__label slds-assistive-text">Select All</span>
+                                        </label>
+                                      </span>
+                                    </div>
+                                </td>
+                                <td>{{opp.name}}</td>
+                                <td>{{opp.accountName}}</td>
+                                <td>{{opp.salesPersonName}}</td>
+                                <td>{{opp.closeDate}}</td>
+                                <td>{{opp.stageName}}</td>
+                                <td></td>
+                                <td>
+
+                                    <button class="slds-button slds-button_icon slds-button_icon-border-filled" ng-click="ctrl.generateInvoice(opp)">
+                                        <svg class="slds-button__icon" aria-hidden="true">
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check" />
+                                        </svg>
+                                        <span class="slds-assistive-text">Like</span>
+                                    </button>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                  <!-- MAIN -->
+    </body>
+</html>

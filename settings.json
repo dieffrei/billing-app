@@ -1,0 +1,8 @@
+{
+  "login-url": "https://test.salesforce.com",
+  "consumer-key": "",
+  "consumer-secret": "",
+  "username": "",
+  "password": "",
+  "redirect-uri": "http://localhost:3000/oauth2/callback"
+}
